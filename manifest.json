@@ -1,0 +1,82 @@
+{
+  "Name": "Gismeteo Weather",
+  "Author": "druidblack",
+  "Version": "1.0.0",
+  "Description": "Погода Gismeteo на кнопках и панели «Информация» AJAZZ Stream Dock: текущая погода, показатели и прогноз.",
+  "Category": "Погода",
+  "Icon": "icons/plugin",
+  "CategoryIcon": "icons/plugin",
+  "SDKVersion": 1,
+  "CodePath": "bin/plugin.js",
+  "Nodejs": {
+    "Version": "20"
+  },
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Actions": [
+    {
+      "UUID": "com.druidblack.streamdock.gismeteo.current",
+      "Name": "Текущая погода",
+      "Tooltip": "Температура и погодные условия в выбранном городе",
+      "Icon": "icons/sunny",
+      "PropertyInspectorPath": "pi/settings.html",
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "States": [
+        {
+          "Image": "icons/sunny",
+          "FontSize": "17",
+          "TitleAlignment": "bottom",
+          "FontStyle": "Bold",
+          "TitleColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "UUID": "com.druidblack.streamdock.gismeteo.metric",
+      "Name": "Показатель погоды",
+      "Tooltip": "Влажность, давление, ветер и другие показатели",
+      "Icon": "icons/humidity",
+      "PropertyInspectorPath": "pi/settings.html",
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "States": [
+        {
+          "Image": "icons/humidity",
+          "FontSize": "15",
+          "TitleAlignment": "bottom",
+          "FontStyle": "Bold",
+          "TitleColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "UUID": "com.druidblack.streamdock.gismeteo.forecast",
+      "Name": "Прогноз погоды",
+      "Tooltip": "Прогноз погоды по дням",
+      "Icon": "icons/partly",
+      "PropertyInspectorPath": "pi/settings.html",
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "States": [
+        {
+          "Image": "icons/partly",
+          "FontSize": "14",
+          "TitleAlignment": "bottom",
+          "FontStyle": "Bold",
+          "TitleColor": "#FFFFFF"
+        }
+      ]
+    }
+  ]
+}

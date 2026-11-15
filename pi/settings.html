@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gismeteo Weather</title>
+<style>
+  :root { color-scheme: dark; font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 12px 13px 20px; background: #232427; color: #eee; }
+  h2 { margin: 4px 0 8px; font-size: 16px; font-weight: 650; }
+  h3 { margin: 18px 0 8px; padding-bottom: 5px; border-bottom: 1px solid #46464b; font-size: 13px; }
+  label { display: block; margin: 10px 0 5px; color: #dedee1; font-weight: 500; }
+  input, select { display: block; width: 100%; min-width: 0; height: 30px; padding: 4px 7px; border-radius: 4px; border: 1px solid #5b5d64; background: #33353b; color: #fff; font: inherit; }
+  input:focus, select:focus { outline: 1px solid #7ebaff; border-color: #7ebaff; }
+  input::placeholder { color: #a7a7b0; }
+  .hint { color: #aaaab0; font-size: 12px; margin: 5px 0 10px; }
+  .inline { display: flex; gap: 8px; }
+  .inline > div { flex: 1; min-width: 0; }
+  button { width: 100%; margin: 12px 0 4px; background: #3c587f; color: #fff; padding: 8px; border: 0; border-radius: 4px; cursor: pointer; font: inherit; }
+  button:hover { background: #51719c; }
+  #state { margin-top: 10px; min-height: 32px; padding: 8px; background: #2d3036; border-radius: 4px; color: #c7d5e2; overflow-wrap: anywhere; }
+  #detail { color: #e8ba7b; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <h2>Gismeteo Weather</h2>
+  <div class="hint">Погода обновляется автоматически примерно раз в 30 минут. Нажатие кнопки на устройстве — запросить обновление.</div>
+  <h3>Город</h3>
+  <label for="cityLabel">Название города</label>
+  <input id="cityLabel" maxlength="90" placeholder="Например, Москва или Берлин">
+  <label for="cityId">ID, ссылка Gismeteo или название (необязательно)</label>
+  <input id="cityId" placeholder="4368 или https://www.gismeteo.ru/weather-moscow-4368/">
+  <div class="hint">Достаточно указать название города в первом поле. Для точного выбора можно вместо него указать ID или ссылку Gismeteo. ID имеет приоритет над остальными способами.</div>
+  <h3>Или определение по координатам</h3>
+  <div class="inline">
+    <div><label for="latitude">Широта</label><input id="latitude" inputmode="decimal" placeholder="55.7558"></div>
+    <div><label for="longitude">Долгота</label><input id="longitude" inputmode="decimal" placeholder="37.6173"></div>
+  </div>
+  <div class="hint">При заполненных координатах и пустом ID погода загружается по координатам. Название используется как подпись. Используйте точку или запятую.</div>
+  <div id="metricSection" class="hidden">
+    <h3>Что показывать</h3>
+    <label for="metric">Показатель</label>
+    <select id="metric">
+      <option value="temp">Температура</option>
+      <option value="feels">Ощущается как</option>
+      <option value="humidity">Влажность</option>
+      <option value="pressure">Давление</option>
+      <option value="wind">Скорость ветра</option>
+      <option value="direction">Направление ветра</option>
+      <option value="clouds">Облачность</option>
+      <option value="precipitation">Количество осадков</option>
+      <option value="magnetic">Геомагнитная активность</option>
+      <option value="sunrise">Восход солнца</option>
+      <option value="sunset">Закат солнца</option>
+      <option value="water">Температура воды</option>
+    </select>
+  </div>
+  <div id="forecastSection" class="hidden">
+    <h3>Прогноз</h3>
+    <label for="forecastDay">День прогноза</label>
+    <select id="forecastDay">
+      <option value="0">Сегодня</option><option value="1">Завтра</option>
+      <option value="2">Через 2 дня</option><option value="3">Через 3 дня</option>
+      <option value="4">Через 4 дня</option><option value="5">Через 5 дней</option>
+      <option value="6">Через 6 дней</option>
+    </select>
+  </div>
+  <button id="refresh">Обновить погоду сейчас</button>
+  <div id="state">Готово к настройке</div><div id="detail"></div>
+  <script src="settings.js"></script>
+</body>
+</html>
